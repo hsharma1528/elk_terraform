@@ -43,7 +43,7 @@ resource "aws_instance" "elasticsearch" {
     ebs_block_device = {
         device_name = "/dev/sdb"
         volume_type = "io1"
-        volume_size = "20"
+        volume_size = "100"
         iops = "500"
     }
 

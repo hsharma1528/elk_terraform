@@ -13,6 +13,7 @@ variable "aws_amis" {
         eu-west-1 = "ami-6d48500b"
         us-west-2 = "ami-835b4efa"
         us-east-1 = "ami-d15a75c7"
+        eu-central-1 = "ami-0ac05733"
     }
 }
 
@@ -25,7 +26,7 @@ variable "aws_public_key_path" {
 Path to the SSH public key to be used for authentication.
 Ensure this keypair is added to your local SSH agent so provisioners can
 connect.
-Example: ~/.ssh/elk-terraform.pub
+Example: ~/.ssh/staging.pub
 DESCRIPTION
 }
 
@@ -40,4 +41,11 @@ variable "elasticsearch_data_dir" {
 variable "elasticsearch_cluster" {
     description = "Name of the elasticsearch cluster"
     default = "elk_cluster"
+}
+
+variable "vpc_cidr" {
+}
+
+variable "subnet_cidrs" {
+    type = "map"  
 }

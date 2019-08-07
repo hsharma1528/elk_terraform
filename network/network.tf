@@ -1,5 +1,5 @@
 resource "aws_vpc" "elk_vpc" {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = "${vars.vpc_cidr}"
     enable_dns_hostnames = true
     tags = {
         Name = "Elk VPC"
@@ -21,10 +21,10 @@ resource "aws_route" "public_access" {
 
 resource "aws_subnet" "public_subnet" {
     vpc_id = "${aws_vpc.elk_vpc.id}"
-    cidr_block = "10.0.1.0/24"
+    cidr_block = "${var.subnet_cidrs["elk_public"]}"
     map_public_ip_on_launch = true
     tags = {
-        Name = "Public subnet"
+        Name = "ELK Public subnet"
     }
 }
 
@@ -52,9 +52,9 @@ resource "aws_route" "private_access" {
 
 resource "aws_subnet" "private_subnet" {
     vpc_id = "${aws_vpc.elk_vpc.id}"
-    cidr_block = "10.0.2.0/24"
+    cidr_block = "${vars.subnet_cidrs["elk_private"]}"
     tags = {
-        Name = "Private subnet"
+        Name = "ELK Private subnet"
     }
 }
 
